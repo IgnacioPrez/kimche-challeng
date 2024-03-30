@@ -1,6 +1,6 @@
 import './character.css'
 
-const Character = ({image,name}) => {
+export const Character = ({image,name}) => {
   return (
     <div className="relative shadow-black shadow-2xl">
       <img src={image} alt={name} className="w-60 h-52 rounded-lg"/>
@@ -8,5 +8,3 @@ const Character = ({image,name}) => {
     </div>
   )
 }
-
-export default Character
