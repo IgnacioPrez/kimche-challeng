@@ -2,7 +2,7 @@ import { useLazyQuery, useQuery } from '@apollo/client'
 import { Character } from '../character/Character'
 import { RANDOM_CHARACTERS, DATA_CHARACTER } from '../../querys/querys'
 import { useState } from 'react'
-import { Modal, Pagination, Skeleton } from '../'
+import { Modal, Skeleton } from '../'
 
 const Characters = ({resultOfSearch, errorSearch, loadingSearch, status, gender, species }) => {
   const { data, loading, error } = useQuery(RANDOM_CHARACTERS, {
@@ -11,7 +11,6 @@ const Characters = ({resultOfSearch, errorSearch, loadingSearch, status, gender,
   const [showModal, setShowModal] = useState(false)
   const [getOneCharacter, dataOfCharacter] = useLazyQuery(DATA_CHARACTER)
 
-  console.log(dataOfCharacter)
   const renderModal = (id) => {
     obtainData(id)
     setShowModal(true)
@@ -47,7 +46,6 @@ const Characters = ({resultOfSearch, errorSearch, loadingSearch, status, gender,
               renderModal={() =>  renderModal(character.id)}
             />
           ))}
-      <Pagination page={page} />
       {showModal && dataOfCharacter.data ? <Modal setShowModal={setShowModal} character={dataOfCharacter.data.character} loading={dataOfCharacter}/> : null}
     </div>
   )
