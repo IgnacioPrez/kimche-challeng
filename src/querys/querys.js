@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 export const RANDOM_CHARACTERS = gql`
   query GetCharacters($page: Int!, $status: String, $gender: String, $species: String) {
-    characters(page: $page, filter:{status: $status, gender: $gender, species: $species}) {
+    characters(page: $page, filter: { status: $status, gender: $gender, species: $species }) {
       info {
         count
         prev
@@ -16,8 +16,7 @@ export const RANDOM_CHARACTERS = gql`
       }
     }
   }
-`;
-
+`
 
 export const CHARACTER_SELECTED = gql`
   query findCharacterByName($page: Int!, $name: String, $status: String, $gender: String, $species: String) {
@@ -56,5 +55,22 @@ export const DATA_CHARACTER = gql`
       image
     }
   }
-`;
+`
 
+export const loadMoreCharacters = (fetchMore, data) => {
+  fetchMore({
+    variables: {
+      page: data.characters.info.next,
+    },
+    updateQuery: (prev, { fetchMoreResult }) => {
+      if (!fetchMoreResult) return prev
+      const newData = fetchMoreResult.characters.results
+      return {
+        characters: {
+          ...fetchMoreResult.characters,
+          results: [...prev.characters.results, ...newData],
+        },
+      }
+    },
+  })
+}
