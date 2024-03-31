@@ -58,9 +58,11 @@ const Characters = ({
         : resultOfSearch.map((character) => (
             <Character {...character} key={character.id} renderModal={() => renderModal(character.id)} />
           ))}
+
       {showModal && dataOfCharacter.data ? (
         <Modal setShowModal={setShowModal} character={dataOfCharacter.data.character} loading={dataOfCharacter} />
       ) : null}
+
     </div>
   )
 }
