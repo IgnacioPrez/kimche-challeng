@@ -36,3 +36,25 @@ export const CHARACTER_SELECTED = gql`
     }
   }
 `
+
+export const DATA_CHARACTER = gql`
+  query findCharacter($id: ID!) {
+    character(id: $id) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      origin {
+        name
+        dimension
+      }
+      location {
+        name
+      }
+      image
+    }
+  }
+`;
+
