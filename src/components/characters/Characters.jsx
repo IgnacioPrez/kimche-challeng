@@ -30,7 +30,6 @@ const Characters = ({
   }
   const handleInfiniteScroll = (e) => {
     const isAtBottom = e.currentTarget.scrollHeight - e.currentTarget.scrollTop === e.currentTarget.clientHeight
-    console.log(isAtBottom)
     if (isAtBottom) {
       if (resultOfSearch.length > 0) {
         loadMoreCharacters(searchMore, dataOfSearch)
@@ -44,7 +43,7 @@ const Characters = ({
 
   return (
     <div
-      className="w-[80%] flex items-center gap-5 justify-center flex-wrap min-h-[80vh] max-h-[80vh] overflow-y-auto md:min-h-[80vh] md:max-h-[80vh] xl:min-h-[100vh] xl:max-h-[100vh]"
+      className="w-[80%] flex items-center gap-5 justify-center flex-wrap min-h-[80vh] max-h-[80vh] overflow-y-auto  md:min-h-[80vh] md:max-h-[80vh] xl:min-h-[100vh] xl:max-h-[100vh] lg:min-h-[70vh] lg:max-h-[70vh]"
       onScroll={handleInfiniteScroll}
     >
       {loading || loadingSearch
