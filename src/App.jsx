@@ -6,10 +6,11 @@ import { useLazyQuery } from '@apollo/client'
 
 export default function App() {
   const [resultOfSearch, setResultOfSearch] = useState([])
-  const [searchSelected, { data, error, loading }] = useLazyQuery(CHARACTER_SELECTED)
+  const [searchSelected, { data, error, loading, fetchMore }] = useLazyQuery(CHARACTER_SELECTED)
   const [status, setStatus] = useState('')
   const [species, setSpecies] = useState('')
   const [gender, setGender] = useState('')
+
 
   useEffect(() => {
     if (data && data.characters.results) {
@@ -36,6 +37,8 @@ export default function App() {
           status={status}
           species={species}
           gender={gender}
+          dataOfSearch={data}
+          searchMore={fetchMore}
         />
       </main>
     </>
