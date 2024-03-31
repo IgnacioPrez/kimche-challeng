@@ -4,10 +4,9 @@ import { RANDOM_CHARACTERS, DATA_CHARACTER } from '../../querys/querys'
 import { useState } from 'react'
 import { Modal, Pagination, Skeleton } from '../'
 
-const Characters = ({ pageSearch, resultOfSearch, errorSearch, loadingSearch, status, gender, species }) => {
-  const [page, setPage] = useState(1)
+const Characters = ({resultOfSearch, errorSearch, loadingSearch, status, gender, species }) => {
   const { data, loading, error } = useQuery(RANDOM_CHARACTERS, {
-    variables: { page: page || 1, status: status || '', species: species || '', gender: gender || '' },
+    variables: { page: 1, status: status || '', species: species || '', gender: gender || '' },
   })
   const [showModal, setShowModal] = useState(false)
   const [getOneCharacter, dataOfCharacter] = useLazyQuery(DATA_CHARACTER)
